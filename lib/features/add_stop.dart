@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:moniepoint_test/common/utils/utils.dart';
+import 'package:moniepoint_test/features/delivery_details_page.dart';
 import 'package:moniepoint_test/features/search_page.dart';
 
 class AddStop extends StatefulWidget {
@@ -66,7 +67,7 @@ class _AddStopState extends State<AddStop> with TickerProviderStateMixin {
     animationController.forward();
     showModalBottomSheet(
         context: context,
-        isDismissible: true,
+        isDismissible: false,
         builder: (_) {
           return BottomSheet(
             animationController: BottomSheet.createAnimationController(this),
@@ -86,15 +87,19 @@ class _AddStopState extends State<AddStop> with TickerProviderStateMixin {
                       return Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Align(
-                            alignment: Alignment.centerLeft,
-                            child: Text(
-                              'Address details',
-                              style: AppTextStyles.mediumSemiBold(
-                                color: AppColors.blueGrey,
-                              ),
-                            ),
-                          ),
+                          Transform.translate(
+                              offset: Offset(0, homePosition.value),
+                              child: Opacity(
+                                  opacity: homeOpacity.value,
+                                  child: Align(
+                                    alignment: Alignment.centerLeft,
+                                    child: Text(
+                                      'Address details',
+                                      style: AppTextStyles.mediumSemiBold(
+                                        color: AppColors.blueGrey,
+                                      ),
+                                    ),
+                                  ))),
                           const Gap(12),
                           DetailField(
                             opacity: homeOpacity.value,
@@ -146,8 +151,12 @@ class _AddStopState extends State<AddStop> with TickerProviderStateMixin {
                                   Expanded(
                                     child: ElevatedButton(
                                       onPressed: () {
-                                        Navigator.of(context)
-                                            .push(searchPageRoute());
+                                        // Navigator.of(context).pop();
+                                        Navigator.of(context).push(
+                                          MaterialPageRoute(
+                                            builder: (_) => DeliveryDetails(),
+                                          ),
+                                        );
                                       },
                                       style: ElevatedButton.styleFrom(
                                         foregroundColor: Colors.white,
@@ -189,13 +198,7 @@ class _AddStopState extends State<AddStop> with TickerProviderStateMixin {
               onPressed: () => Navigator.pop(context),
             ),
           ),
-          Center(
-              child: ElevatedButton(
-            onPressed: () {
-              showAddressSheet();
-            },
-            child: const Text('Show'),
-          ))
+          //TODO: Map view
         ],
       )),
     );
