@@ -33,7 +33,7 @@ class _SearchPageState extends State<SearchPage> {
                     fillColor: Colors.white,
                     hintText: 'Search...',
                     hintStyle: TextStyle(color: Colors.grey[600]),
-                    prefixIcon:  Icon(
+                    prefixIcon: Icon(
                       Icons.search,
                       color: Colors.deepPurple[700],
                     ),
@@ -80,7 +80,6 @@ class _SearchPageState extends State<SearchPage> {
                     icon: Icons.work,
                     title: 'Work',
                     subtitle: '2974 Westheimer Rd. Santa Ana, Illinois 994846',
-                   
                   ),
                   const Padding(
                     padding: EdgeInsets.symmetric(horizontal: 4, vertical: 8),
@@ -129,14 +128,16 @@ class SearchItem extends StatefulWidget {
   State<SearchItem> createState() => _SearchItemState();
 }
 
-class _SearchItemState extends State<SearchItem> with SingleTickerProviderStateMixin{
-  late  AnimationController buttonController;
+class _SearchItemState extends State<SearchItem>
+    with SingleTickerProviderStateMixin {
+  late AnimationController buttonController;
   late Animation<double> scale;
 
   @override
   void initState() {
     super.initState();
-    buttonController = AnimationController(vsync: this, duration: Duration(milliseconds: 300));
+    buttonController = AnimationController(
+        vsync: this, duration: const Duration(milliseconds: 300));
     scale = Tween(begin: 1.0, end: 0.5).animate(buttonController);
   }
 
@@ -152,35 +153,34 @@ class _SearchItemState extends State<SearchItem> with SingleTickerProviderStateM
         });
       },
       child: AnimatedBuilder(
-        animation: buttonController,
-        builder: (context, child) {
-          return Transform.scale(
-            scale: scale.value,
-            child: Row(
-              children: [
-                ItemIcon(icon: widget.icon, bg: widget.iconBg),
-                const Gap(6),
-                Expanded(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        widget.title,
-                        style: AppTextStyles.mediumRegular(fontSize: 14),
-                      ),
-                      Text(
-                        widget.subtitle,
-                        style: AppTextStyles.mediumRegular(
-                            color: Colors.grey[600]!, fontSize: 11),
-                      ),
-                    ],
-                  ),
-                )
-              ],
-            ),
-          );
-        }
-      ),
+          animation: buttonController,
+          builder: (context, child) {
+            return Transform.scale(
+              scale: scale.value,
+              child: Row(
+                children: [
+                  ItemIcon(icon: widget.icon, bg: widget.iconBg),
+                  const Gap(6),
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          widget.title,
+                          style: AppTextStyles.mediumRegular(fontSize: 14),
+                        ),
+                        Text(
+                          widget.subtitle,
+                          style: AppTextStyles.mediumRegular(
+                              color: Colors.grey[600]!, fontSize: 11),
+                        ),
+                      ],
+                    ),
+                  )
+                ],
+              ),
+            );
+          }),
     );
   }
 }

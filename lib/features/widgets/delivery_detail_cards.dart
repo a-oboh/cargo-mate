@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 
-
 import '../../common/common.dart';
 
 class OptionCard extends StatefulWidget {
