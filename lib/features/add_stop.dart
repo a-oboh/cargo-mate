@@ -63,124 +63,119 @@ class _AddStopState extends State<AddStop> with TickerProviderStateMixin {
     });
   }
 
+  @override
+  void dispose() {
+    animationController.dispose();
+    super.dispose();
+  }
+
   showAddressSheet() {
     animationController.forward();
     showModalBottomSheet(
         context: context,
         isDismissible: false,
+        showDragHandle: true,
+        backgroundColor: Colors.white,
         builder: (_) {
-          return BottomSheet(
-            animationController: BottomSheet.createAnimationController(this),
-            backgroundColor: Colors.white,
-            onClosing: () {
-              animationController.reverse();
-            },
-            showDragHandle: true,
-            dragHandleSize: const Size(250, 5),
-            dragHandleColor: Colors.grey[300],
-            builder: (_) {
-              return Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 16),
-                child: AnimatedBuilder(
-                    animation: animationController,
-                    builder: (context, _) {
-                      return Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Transform.translate(
-                              offset: Offset(0, homePosition.value),
-                              child: Opacity(
-                                  opacity: homeOpacity.value,
-                                  child: Align(
-                                    alignment: Alignment.centerLeft,
-                                    child: Text(
-                                      'Address details',
-                                      style: AppTextStyles.mediumSemiBold(
-                                        color: AppColors.blueGrey,
-                                      ),
-                                    ),
-                                  ))),
-                          const Gap(12),
-                          DetailField(
-                            opacity: homeOpacity.value,
-                            y: homePosition.value,
-                            icon: Icons.business_outlined,
-                            hintText: 'Floor or unit number',
-                            onTap: () =>
-                                Navigator.of(context).push(searchPageRoute()),
-                          ),
-                          const Gap(12),
-                          DetailField(
-                            opacity: homeOpacity.value,
-                            y: homePosition.value,
-                            icon: Icons.contact_page_outlined,
-                            hintText: 'Phone Number',
-                          ),
-                          const Gap(12),
-                          DetailField(
-                            opacity: homeOpacity.value,
-                            y: homePosition.value,
-                            icon: Icons.edit_outlined,
-                            hintText: 'Name',
-                          ),
-                          Transform.translate(
-                            offset: Offset(0, buttonPosition.value),
-                            child: Opacity(
-                              opacity: buttonOpacity.value,
-                              child: Row(
-                                mainAxisSize: MainAxisSize.min,
-                                children: [
-                                  Checkbox(
-                                    value: false,
-                                    onChanged: (value) {},
+          return Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16),
+            child: AnimatedBuilder(
+                animation: animationController,
+                builder: (context, _) {
+                  return Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Transform.translate(
+                          offset: Offset(0, homePosition.value),
+                          child: Opacity(
+                              opacity: homeOpacity.value,
+                              child: Align(
+                                alignment: Alignment.centerLeft,
+                                child: Text(
+                                  'Address details',
+                                  style: AppTextStyles.mediumSemiBold(
+                                    color: AppColors.blueGrey,
                                   ),
-                                  Text(
-                                    'Save this address',
-                                    style: AppTextStyles.smallRegular(),
-                                  ),
-                                ],
+                                ),
+                              ))),
+                      const Gap(12),
+                      DetailField(
+                        opacity: homeOpacity.value,
+                        y: homePosition.value,
+                        icon: Icons.business_outlined,
+                        hintText: 'Floor or unit number',
+                        onTap: () =>
+                            Navigator.of(context).push(searchPageRoute()),
+                      ),
+                      const Gap(12),
+                      DetailField(
+                        opacity: homeOpacity.value,
+                        y: homePosition.value,
+                        icon: Icons.contact_page_outlined,
+                        hintText: 'Phone Number',
+                      ),
+                      const Gap(12),
+                      DetailField(
+                        opacity: homeOpacity.value,
+                        y: homePosition.value,
+                        icon: Icons.edit_outlined,
+                        hintText: 'Name',
+                      ),
+                      Transform.translate(
+                        offset: Offset(0, buttonPosition.value),
+                        child: Opacity(
+                          opacity: buttonOpacity.value,
+                          child: Row(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              Checkbox(
+                                value: false,
+                                onChanged: (value) {},
                               ),
-                            ),
+                              Text(
+                                'Save this address',
+                                style: AppTextStyles.smallRegular(),
+                              ),
+                            ],
                           ),
-                          Transform.translate(
-                            offset: Offset(0, buttonPosition.value),
-                            child: Opacity(
-                              opacity: buttonOpacity.value,
-                              child: Row(
-                                children: [
-                                  Expanded(
-                                    child: ElevatedButton(
-                                      onPressed: () {
-                                        // Navigator.of(context).pop();
-                                        Navigator.of(context).push(
-                                          MaterialPageRoute(
-                                            builder: (_) => DeliveryDetails(),
-                                          ),
-                                        );
-                                      },
-                                      style: ElevatedButton.styleFrom(
-                                        foregroundColor: Colors.white,
-                                        backgroundColor: Colors.orange,
-                                        shape: RoundedRectangleBorder(
-                                          borderRadius:
-                                              BorderRadius.circular(30),
-                                        ),
+                        ),
+                      ),
+                      Transform.translate(
+                        offset: Offset(0, buttonPosition.value),
+                        child: Opacity(
+                          opacity: buttonOpacity.value,
+                          child: Row(
+                            children: [
+                              Expanded(
+                                child: ElevatedButton(
+                                  onPressed: () {
+                                    // Navigator.of(context).pop();
+                                    Navigator.of(context).push(
+                                      MaterialPageRoute(
+                                        builder: (_) => const DeliveryDetails(),
                                       ),
-                                      child: const Padding(
-                                        padding: EdgeInsets.all(12.0),
-                                        child: Text('Confirm'),
-                                      ),
+                                    );
+                                  },
+                                  style: ElevatedButton.styleFrom(
+                                    foregroundColor: Colors.white,
+                                    backgroundColor: Colors.orange,
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(30),
                                     ),
                                   ),
-                                ],
+                                  child: const Padding(
+                                    padding: EdgeInsets.all(12.0),
+                                    child: Text('Confirm'),
+                                  ),
+                                ),
                               ),
-                            ),
+                            ],
                           ),
-                        ],
-                      );
-                    }),
-              );
-            },
+                        ),
+                      ),
+                    ],
+                  );
+                }),
           );
         });
   }

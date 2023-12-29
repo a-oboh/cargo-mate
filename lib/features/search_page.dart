@@ -17,7 +17,7 @@ class _SearchPageState extends State<SearchPage> {
       appBar: PreferredSize(
         preferredSize: const Size.fromHeight(70),
         child: AppBar(
-          backgroundColor: Colors.deepPurple,
+          backgroundColor: Colors.deepPurple[700],
           automaticallyImplyLeading: false,
           title: Row(
             children: [
@@ -33,9 +33,9 @@ class _SearchPageState extends State<SearchPage> {
                     fillColor: Colors.white,
                     hintText: 'Search...',
                     hintStyle: TextStyle(color: Colors.grey[600]),
-                    prefixIcon: const Icon(
+                    prefixIcon:  Icon(
                       Icons.search,
-                      color: Colors.deepPurple,
+                      color: Colors.deepPurple[700],
                     ),
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(100),

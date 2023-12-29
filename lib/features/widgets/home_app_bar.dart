@@ -11,7 +11,7 @@ class HomeAppBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SliverAppBar(
-      backgroundColor: Colors.deepPurple,
+      backgroundColor: Colors.deepPurple[700],
       title: Column(
         children: [
           Row(
@@ -63,23 +63,28 @@ class HomeAppBar extends StatelessWidget {
         ],
       ),
       flexibleSpace: FlexibleSpaceBar(
-        background: Center(
-          child: Padding(
-            padding: const EdgeInsets.fromLTRB(20, 20, 20, 0),
-            child: TextField(
-              decoration: InputDecoration(
-                contentPadding: const EdgeInsets.all(0),
-                filled: true,
-                fillColor: Colors.white,
-                hintText: 'Enter the receipt number',
-                hintStyle: const TextStyle(color: Colors.grey),
-                prefixIcon: const Icon(
-                  Icons.search,
-                  color: Colors.deepPurple,
-                ),
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(100.0), // Rounded borders
-                  borderSide: BorderSide.none, // No side border
+        background: Padding(
+          padding: const EdgeInsets.only(top: 36, bottom: 0),
+          child: Align(
+            alignment: Alignment.center,
+            child: Padding(
+              padding: const EdgeInsets.fromLTRB(20, 20, 20, 0),
+              child: TextField(
+                decoration: InputDecoration(
+                  contentPadding: const EdgeInsets.all(0),
+                  filled: true,
+                  fillColor: Colors.white,
+                  hintText: 'Enter the receipt number',
+                  hintStyle: const TextStyle(color: Colors.grey),
+                  prefixIcon: Icon(
+                    Icons.search,
+                    color: Colors.deepPurple[700]!,
+                  ),
+                  border: OutlineInputBorder(
+                    borderRadius:
+                        BorderRadius.circular(100.0), // Rounded borders
+                    borderSide: BorderSide.none, // No side border
+                  ),
                 ),
               ),
             ),

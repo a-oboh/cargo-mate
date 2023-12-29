@@ -26,7 +26,7 @@ class HomePage extends StatelessWidget {
               ),
               const Gap(12),
               const TrackingCard(),
-              const Gap(12),
+              const Gap(20),
               Text(
                 'Available Vehicles',
                 style: AppTextStyles.mediumSemiBold(color: AppColors.blueGrey),
@@ -129,8 +129,8 @@ class _PositionedVehicleImageState extends State<PositionedVehicleImage>
   @override
   void initState() {
     super.initState();
-    imageController =
-        AnimationController(vsync: this, duration: const Duration(milliseconds: 300));
+    imageController = AnimationController(
+        vsync: this, duration: const Duration(milliseconds: 300));
     imageAnimation = Tween<double>(begin: 100, end: 0).animate(imageController);
     imageController.forward();
   }
