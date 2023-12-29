@@ -1,4 +1,4 @@
-# moniepoint_test
+# cargo_mate
 
 A new Flutter project.
 
