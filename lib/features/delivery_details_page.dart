@@ -28,7 +28,7 @@ class _DeliveryDetailsState extends State<DeliveryDetails>
 
     largePosition = Tween(begin: 100.0, end: 0.0).animate(CurvedAnimation(
       parent: controller,
-      curve: const Interval(0.0, 0.3),
+      curve: const Interval(0.02, 0.3),
     ));
 
     largeOpacity = Tween(begin: 0.0, end: 1.0).animate(CurvedAnimation(
